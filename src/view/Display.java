@@ -1,5 +1,6 @@
 package view;
 
+//awt basis of Swing framework
 import java.awt.Canvas;
 import java.awt.Dimension;
 

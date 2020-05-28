@@ -1,5 +1,7 @@
 package model.character;
 
+import java.awt.Graphics;
+
 public class Character_Player extends Character {
 	
 	/**
@@ -10,9 +12,9 @@ public class Character_Player extends Character {
 	 * @param def : defense stat of the Player
 	 * @param dmg : damage stat of the Player
 	 */
-	public Character_Player(int x, int y, int hp, int def, int dmg) {
-		super(x, y, hp, def, dmg);
-		
+	public Character_Player(int x, int y, int hp, int def, int dmg, int speed) {
+		super(x, y, hp, def, dmg, speed);
+		this.player = Character_Player_Assets.characterMovingToTheRight;
 	}
 	
 	/**
@@ -21,16 +23,6 @@ public class Character_Player extends Character {
 	 */
 	@Override
 	public void attack() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * Implements the Move Function of the CharacterInterface
-	 * Which is used to move the Character which in this case is a Player-Character
-	 */
-	@Override
-	public void move() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -54,5 +46,40 @@ public class Character_Player extends Character {
 		return false;
 	}
 
+	@Override
+	public void moveLeft() {
+		this.setX(this.getX() - speed);
+		this.player = Character_Player_Assets.characterMovingToTheLeft;
+	}
+
+	@Override
+	public void moveRight() {
+		// TODO Auto-generated method stub
+		this.setX(this.getX() + speed);
+		this.player = Character_Player_Assets.characterMovingToTheRight;
+	}
+
+	@Override
+	public void moveUp() {
+		// TODO Auto-generated method stub
+		this.setY(this.getY() - speed);
+	}
+
+	@Override
+	public void moveDown() {
+		// TODO Auto-generated method stub
+		this.setY(this.getY() + speed);
+		
+	}
+
+	@Override
+	public void display(Graphics g) {
+		g.drawImage(player, getX(), getY(), null);
+	}
 	
-}
+	
+	
+	
+	
+	
+	}

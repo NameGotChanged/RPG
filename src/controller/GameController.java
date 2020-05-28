@@ -1,18 +1,20 @@
 package controller;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
-import view.Assets;
+import java.awt.image.BufferStrategy;
+
+
+import model.character.Character_Player;
+import model.character.Character_Player_Assets;
+
 import view.Display;
-import view.ImageLoader;
-import view.SpriteSheet;
+
 
 public class GameController implements Runnable {
 	
 	private Display display;
+	public Character_Player nino;
 	public int width;
 	public int height;
 	public String title;
@@ -27,8 +29,10 @@ public class GameController implements Runnable {
 	//Graphics object
 	private Graphics g;
 	
+	//States
+	
 	/**
-	 * 
+	 * ctor
 	 * @param title : Display Window Title
 	 * @param width : Display Window width
 	 * @param height : Display Window height
@@ -44,12 +48,16 @@ public class GameController implements Runnable {
 	private void init() {
 		display = new Display(title, width, height);
 		//Loads in all the Images from a spriteSheet
-		Assets.init();
+		Character_Player_Assets.init();
+		nino = new Character_Player(50, 50, 50, 50, 50, 1);
+		
 	}
 	/**
 	 * Updates modell
 	 */
 	private void tick() {
+		
+		
 		
 	}
 	/**
@@ -65,9 +73,7 @@ public class GameController implements Runnable {
 		//Clear Screen
 		g.clearRect(0, 0, width, height);
 		//Start Drawing!
-		
-		g.drawImage(Assets.playerIdle1, 0,0 , null);
-		g.drawImage(Assets.playerIdle2, 32,0 , null);
+		nino.display(g);
 		
 		
 		//End Drawing!
@@ -84,11 +90,41 @@ public class GameController implements Runnable {
 	public void run() {
 		//Sets up the Game
 		init();
+		
+		int fps = 60;//ticks per second
+		//1second in nano seconds / fps = 60 frames per second
+		double timePerTick = 1000000000 / fps;
+		double delta = 0;
+		long now;
+		long lastTime = System.nanoTime();
+		long timer = 0;
+		int ticks = 0;
+		
 		// As long as running is true loop
 		 
 		while(running) {
+			//Basically holds the Value of time before the code below
+			now = System.nanoTime();
+			//Delta is 1 or higher when the game needs to be updated and rendered
+			delta += (now - lastTime) / timePerTick;
+			timer += now - lastTime;
+			//Basically holds the Value of time after the code above
+			lastTime = now;
+			//Checking if delta is bigger or equal to 1
+			if(delta >= 1) {
 			tick();
 			render();
+			ticks++;
+			delta--; //resetting Delta
+			}
+			//If the timer is equal to 1 sec in nano seconds
+			//Print out how many times the game and the image have been updated in that second
+			//FPS
+			if(timer >= 1000000000) {
+				System.out.println("Ticks and Frames: " + ticks);
+				ticks = 0;
+				timer = 0;
+			}
 		}
 		//stops the thread if it isn't already stopped
 		stop();
@@ -122,4 +158,13 @@ public class GameController implements Runnable {
 			e.printStackTrace();
 		}
 	}
-}
+	
+	/*public void keyPressed() {
+		switch() {
+		case(upKey):
+			
+		}
+	
+	}*/
+	}
+	
