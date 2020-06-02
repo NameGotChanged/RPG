@@ -16,10 +16,20 @@ public class Character_Player_Assets {
 	
 	//Load in player image
 	public static BufferedImage characterMovingToTheLeft, characterMovingToTheRight;
+	public static BufferedImage grass1, grass2, grass3, stone, dirt;
 	
-	public static void init() {
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/Adventurer Sprite Sheet v1.1.png"));
+	public static void initPlayerSprites() {
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sprites.png"));
 		characterMovingToTheLeft = sheet.crop(0, 10*height, width, height);
 		characterMovingToTheRight = sheet.crop(0, 2*height, width, height);
+	}
+	
+	public static void initTextures() {
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/textures.png"));
+		grass1 = sheet.crop(0, 0, width, height);
+		grass2 = sheet.crop(width, 0, width, height);
+		grass3 = sheet.crop(2*width, 0, width, height);
+		stone = sheet.crop(width, 8*height, width, height);
+		dirt = sheet.crop(5*width, 0, width, height);
 	}
 }

@@ -4,7 +4,12 @@ import java.awt.Graphics;
 
 import java.awt.image.BufferStrategy;
 
-
+import controller.camera.GameCamera;
+import controller.keyManager.KeyManager;
+import controller.state.GameState;
+import controller.state.GameStateManager;
+import controller.state.MenuState;
+import controller.state.State;
 import model.character.Character_Player;
 import model.character.Character_Player_Assets;
 
@@ -15,8 +20,7 @@ public class GameController implements Runnable {
 	
 	private Display display;
 	public Character_Player nino;
-	public int width;
-	public int height;
+	private int width, height;
 	public String title;
 	
 	
@@ -30,6 +34,14 @@ public class GameController implements Runnable {
 	private Graphics g;
 	
 	//States
+	private State gameState;
+	private State menuState;
+	
+	//Input
+	private KeyManager keyManager;
+	
+	//Camera
+	private GameCamera gameCamera;
 	
 	/**
 	 * ctor
@@ -41,27 +53,35 @@ public class GameController implements Runnable {
 		this.width = width;
 		this.height = height;
 		this.title = title;
+		keyManager = new KeyManager();
 	}
 	/**
 	 * Setup Game
 	 */
 	private void init() {
 		display = new Display(title, width, height);
+		display.getFrame().addKeyListener(keyManager);
 		//Loads in all the Images from a spriteSheet
-		Character_Player_Assets.init();
-		nino = new Character_Player(50, 50, 50, 50, 50, 1);
+		Character_Player_Assets.initPlayerSprites();
+		Character_Player_Assets.initTextures();
 		
+		gameCamera = new GameCamera(0, 0);
+		
+		gameState = new GameState(this);
+		menuState = new MenuState(this);
+		GameStateManager.setState(gameState);
 	}
 	/**
 	 * Updates modell
 	 */
 	private void tick() {
+		keyManager.tick();
 		
-		
-		
+		if(GameStateManager.getState() != null) //Avoiding nullPointerEx
+			GameStateManager.getState().tick(); //updating modell (ticking)
 	}
 	/**
-	 * draws the updated data to Display
+	 * renders/draws the updated data to Display/buffer1
 	 */
 	public void render() {
 		bs = display.getCanvas().getBufferStrategy();
@@ -73,8 +93,9 @@ public class GameController implements Runnable {
 		//Clear Screen
 		g.clearRect(0, 0, width, height);
 		//Start Drawing!
-		nino.display(g);
 		
+		if(GameStateManager.getState() != null) //Avoiding nullPointerEx
+			GameStateManager.getState().render(g); //drawing
 		
 		//End Drawing!
 		//displays the things drawn to the bs object
@@ -130,6 +151,22 @@ public class GameController implements Runnable {
 		stop();
 	}
 	
+	public GameCamera getGameCamera() {
+		return gameCamera;
+	}
+	
+	public KeyManager getKeyManager() {
+		return keyManager;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
 	/**
 	 * Starts Thread
 	 */
@@ -158,13 +195,5 @@ public class GameController implements Runnable {
 			e.printStackTrace();
 		}
 	}
-	
-	/*public void keyPressed() {
-		switch() {
-		case(upKey):
-			
-		}
-	
-	}*/
 	}
 	

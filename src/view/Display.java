@@ -48,6 +48,8 @@ public class Display {
 		canvas.setMaximumSize(new Dimension(width, height));
 		//sets the minimum Size of the canvas
 		canvas.setMinimumSize(new Dimension(width, height));
+		//Makes it that the JFrame is the only Focusable window (so it doesn't focus the canvas)
+		canvas.setFocusable(false);
 		//adds the canvas to the JFrame Object named frame
 		frame.add(canvas);
 		//Resizes the frame to match the canvas Size
@@ -59,5 +61,9 @@ public class Display {
 	 */
 	public Canvas getCanvas() {
 		return canvas;
+	}
+	
+	public JFrame getFrame() {
+		return frame;
 	}
 }
