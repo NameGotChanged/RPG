@@ -2,14 +2,15 @@ package controller.state;
 
 import java.awt.Graphics;
 
-import controller.GameController;
+import controller.Game;
+import controller.Handler;
 
 public abstract class State {
 	
-	protected GameController game;
+	protected Handler handler;
 	
-	public State(GameController game) {
-		this.game = game;
+	public State(Handler handler) {
+		this.handler = handler;
 	}
 	
 	

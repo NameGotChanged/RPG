@@ -1,6 +1,6 @@
 package main;
 
-import controller.GameController;
+import controller.Game;
 
 public class Main {
 	/**
@@ -8,7 +8,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		GameController game = new GameController("Ninoquarantino", 400, 400);
+		Game game = new Game("Ninoquarantino", 400, 400);
 		game.start(); //Start the game thread
 	}
 

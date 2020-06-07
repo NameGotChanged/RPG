@@ -1,21 +1,28 @@
 package model.enitity;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
-import controller.GameController;
+import controller.Game;
+import controller.Handler;
 
 public abstract class Entity {
 	protected float x , y; //protected is similar to private but allows classes that extend this class to use the protected variables
 	protected int width, height;
-	protected GameController game;
+	protected Handler handler;
+	protected Rectangle bounds; //collision rect
 	
-	public Entity(GameController game, float x, float y, int width, int height) {
-		this.game = game;
+	public Entity(Handler handler, float x, float y, int width, int height) {
+		this.handler = handler;
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		
+		bounds = new Rectangle(0, 0, width, height);
 	}
+	
+	
 	
 	public abstract void tick();
 	

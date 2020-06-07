@@ -16,7 +16,7 @@ import model.character.Character_Player_Assets;
 import view.Display;
 
 
-public class GameController implements Runnable {
+public class Game implements Runnable {
 	
 	private Display display;
 	public Character_Player nino;
@@ -43,13 +43,16 @@ public class GameController implements Runnable {
 	//Camera
 	private GameCamera gameCamera;
 	
+	//Handler (GameController)
+	private Handler handler;
+	
 	/**
 	 * ctor
 	 * @param title : Display Window Title
 	 * @param width : Display Window width
 	 * @param height : Display Window height
 	 */
-	public GameController(String title, int width, int height) {
+	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.title = title;
@@ -65,10 +68,13 @@ public class GameController implements Runnable {
 		Character_Player_Assets.initPlayerSprites();
 		Character_Player_Assets.initTextures();
 		
-		gameCamera = new GameCamera(0, 0);
 		
-		gameState = new GameState(this);
-		menuState = new MenuState(this);
+		handler = new Handler(this);
+		gameCamera = new GameCamera(handler, 0, 0);
+		
+		
+		gameState = new GameState(handler);
+		menuState = new MenuState(handler);
 		GameStateManager.setState(gameState);
 	}
 	/**
