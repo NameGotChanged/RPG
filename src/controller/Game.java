@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import controller.camera.GameCamera;
+import controller.music.MusicLoader;
 import input.KeyManager;
 import input.MouseManager;
 import controller.state.GameState;
@@ -45,8 +46,11 @@ public class Game implements Runnable {
 	//Camera
 	private GameCamera gameCamera;
 	
-	//Handler (GameController)
+	//Handler
 	private Handler handler;
+	
+	//Music
+	private MusicLoader music;
 	
 	/**
 	 * ctor
@@ -71,6 +75,12 @@ public class Game implements Runnable {
 		display.getFrame().addMouseMotionListener(mouseManager);
 		display.getCanvas().addMouseListener(mouseManager);
 		display.getCanvas().addMouseMotionListener(mouseManager);
+		
+		music = new MusicLoader();
+		music.load();
+		music.play(MusicLoader.sound);
+		
+		
 		//Loads in all the Images from a spriteSheet
 		Assets.initUserInterfaceBackground();
 		Assets.initUserInterfaceTextures();
@@ -93,7 +103,6 @@ public class Game implements Runnable {
 	 */
 	private void tick() {
 		keyManager.tick();
-		
 		if(GameStateManager.getState() != null) //Avoiding nullPointerEx
 			GameStateManager.getState().tick(); //updating modell (ticking)
 	}

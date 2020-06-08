@@ -24,8 +24,10 @@ public class Assets {
 	//UI Background
 	public static BufferedImage user_Interface_Background;
 	
+	//Textures
 	public static BufferedImage grass1, grass2, grass3, stone, dirt;
 	public static BufferedImage treeGreen, treeDarkGreen, treeOrange;
+	public static BufferedImage[] house;
 	
 	//WallTile in X und Y richtung & corner
 	public static BufferedImage wallTileX, wallTileY, wallCornerBottomRight, wallCornerBottomLeft, wallCornerTopRight, wallCornerTopLeft;
@@ -119,6 +121,10 @@ public class Assets {
 		wallCornerBottomLeft = sheet.crop(2*width, 27*height, width, height);
 		wallCornerTopRight = sheet.crop(3*width, 26*height, width, height);
 		wallCornerTopLeft = sheet.crop(2*width, 26*height, width, height);
+		
+		house = new BufferedImage[10];
+		//house[0] = sheet.crop(x, y, width, 42*height);
+		
 	}
 	
 	public static void initUserInterfaceTextures() {

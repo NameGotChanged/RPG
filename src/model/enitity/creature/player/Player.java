@@ -1,5 +1,6 @@
 package model.enitity.creature.player;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -16,7 +17,7 @@ public class Player extends Creature {
 	//Movement Animations
 	private Animation animDown, animUp, animLeft, animRight;
 	//Attack Animations
-	private Animation animDownAttack, animUpAttack, animLeftAttack, animRightAttack;
+	private Animation animDownAttack, animLeftAttack, animRightAttack;
 	//Attack timer in ms
 	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
 	
@@ -30,10 +31,10 @@ public class Player extends Creature {
 		
 		//Animations
 		//Movement Animations
-		animDown = new Animation(500, Assets.player_move_down);
-		animUp = new Animation(500, Assets.player_move_up);
-		animLeft = new Animation(500, Assets.player_move_left);
-		animRight = new Animation(500, Assets.player_move_right);
+		animDown = new Animation(100, Assets.player_move_down);
+		animUp = new Animation(100, Assets.player_move_up);
+		animLeft = new Animation(100, Assets.player_move_left);
+		animRight = new Animation(100, Assets.player_move_right);
 		//Attack Animations
 		animDownAttack = new Animation(100, Assets.player_move_down_attack);
 		animLeftAttack = new Animation(100, Assets.player_move_left_attack);
@@ -125,7 +126,8 @@ public class Player extends Creature {
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null); //casting floats into int because the method only takes int
 		
-		/* Temporary Code to draw the hitBox of the player
+		// Temporary Code to draw the hitBox of the player
+		/*
 		g.setColor(Color.RED);
 		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),(int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
 		*/
