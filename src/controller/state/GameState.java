@@ -1,13 +1,7 @@
 package controller.state;
 
 import java.awt.Graphics;
-
-import controller.Game;
 import controller.Handler;
-import model.character.Character_Player_Assets;
-import model.enitity.creature.player.Player;
-import model.enitity.statics.Tree;
-import model.tile.Tile;
 import model.world.World;
 
 public class GameState extends State {

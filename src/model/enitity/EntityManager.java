@@ -2,6 +2,7 @@ package model.enitity;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import controller.Handler;
 import model.enitity.creature.player.Player;
@@ -12,25 +13,39 @@ public class EntityManager {
 	private Player player;
 	private ArrayList<Entity> entities;
 	
+	//Compares the height of the entities to decide which one gets to be rendered first
+	private Comparator<Entity> renderSorter = new Comparator<Entity>() {
+
+		@Override
+		public int compare(Entity a, Entity b) {
+			if(a.getY() + a.getHeight() < b.getY() + b.getHeight()) //Compares the bottom < cordinate of the Entities
+				return -1;
+			return 1;
+		}
+		
+	};
+	
 	public EntityManager(Handler handler, Player player) {
 		this.handler = handler;
 		this.player = player;
 		entities = new ArrayList<Entity>();
+		addEntity(player);
 	}
 	
 	public void tick() {
 		for(int i = 0; i < entities.size(); i++) { //can't use Entity e : entities since it leads to errors
 			Entity e = entities.get(i);
 			e.tick();
+			if(!e.isActive())	//If the eneties health is 0 or lower it should get removed
+				entities.remove(e);
 		}
-		player.tick();
+		entities.sort(renderSorter);
 	}
 	
 	public void render(Graphics g) {
 		for(Entity e : entities) { //Creates an Entity called e for all Entities and puts it into the entities ArrayList
 			e.render(g);
 		}
-		player.render(g);
 	}
 	
 	public void addEntity(Entity e) {

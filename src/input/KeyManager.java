@@ -1,4 +1,4 @@
-package controller.keyManager;
+package input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -7,7 +7,7 @@ public class KeyManager implements KeyListener{
 
 	
 	private boolean [] keys;
-	public boolean up, down, left, right;
+	public boolean up, down, left, right, aSpace;
 	
 	public KeyManager(){
 		keys = new boolean[256];
@@ -19,6 +19,7 @@ public class KeyManager implements KeyListener{
 		left = keys[KeyEvent.VK_A];
 		down = keys[KeyEvent.VK_S];
 		right = keys[KeyEvent.VK_D];
+		aSpace = keys [KeyEvent.VK_SPACE];
 	}
 	
 	/*
@@ -27,7 +28,8 @@ public class KeyManager implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = true;	//Gets the keyCode of the key that got pressed and sets it to true = being pressed
-		System.out.println("Pressed!");
+		//Test Code
+		//System.out.println("Pressed!");
 	}
 	/*
 	 * Is called whenever a key is released (not pressed)

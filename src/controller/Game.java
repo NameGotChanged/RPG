@@ -5,13 +5,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import controller.camera.GameCamera;
-import controller.keyManager.KeyManager;
+import input.KeyManager;
+import input.MouseManager;
 import controller.state.GameState;
 import controller.state.GameStateManager;
 import controller.state.MenuState;
 import controller.state.State;
 import model.character.Character_Player;
-import model.character.Character_Player_Assets;
+import view.Assets;
 
 import view.Display;
 
@@ -34,11 +35,12 @@ public class Game implements Runnable {
 	private Graphics g;
 	
 	//States
-	private State gameState;
-	private State menuState;
+	public State gameState;
+	public State menuState;
 	
 	//Input
 	private KeyManager keyManager;
+	private MouseManager mouseManager;
 	
 	//Camera
 	private GameCamera gameCamera;
@@ -57,6 +59,7 @@ public class Game implements Runnable {
 		this.height = height;
 		this.title = title;
 		keyManager = new KeyManager();
+		mouseManager = new MouseManager();
 	}
 	/**
 	 * Setup Game
@@ -64,9 +67,17 @@ public class Game implements Runnable {
 	private void init() {
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyManager);
+		display.getFrame().addMouseListener(mouseManager);
+		display.getFrame().addMouseMotionListener(mouseManager);
+		display.getCanvas().addMouseListener(mouseManager);
+		display.getCanvas().addMouseMotionListener(mouseManager);
 		//Loads in all the Images from a spriteSheet
-		Character_Player_Assets.initPlayerSprites();
-		Character_Player_Assets.initTextures();
+		Assets.initUserInterfaceBackground();
+		Assets.initUserInterfaceTextures();
+		Assets.initPlayerSprites();
+		Assets.initTextures();
+		
+		
 		
 		
 		handler = new Handler(this);
@@ -75,7 +86,7 @@ public class Game implements Runnable {
 		
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
-		GameStateManager.setState(gameState);
+		GameStateManager.setState(menuState);
 	}
 	/**
 	 * Updates modell
@@ -163,6 +174,10 @@ public class Game implements Runnable {
 	
 	public KeyManager getKeyManager() {
 		return keyManager;
+	}
+	
+	public MouseManager getMouseManager() {
+		return mouseManager;
 	}
 	
 	public int getWidth() {

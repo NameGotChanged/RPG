@@ -6,26 +6,24 @@ import model.tile.Tile;
 
 public abstract class Creature extends Entity{
 	
-	public static final int DEFAULT_HEALTH = 10; //constant for the default health of every creature
 	public static final float DEFAULT_SPEED = 3.0f; //f = float
 	public static final int DEFAULT_CREATURE_WIDTH = 64,
 							DEFAULT_CREATURE_HEIGHT = 64;
-	
-	protected int health;
 	protected float speed;
 	protected float xMove, yMove;
 
 	public Creature(Handler handler, float x, float y, int width, int height) {
 		super(handler, x, y, width, height);
 		// TODO Auto-generated constructor stub
-		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0;
 		yMove = 0;
 	}
 	
 	public void move() {
+		if(!checkEntityCollision(xMove, 0f))
 		moveX();
+		if(!checkEntityCollision(0f, yMove))
 		moveY();
 	}
 	

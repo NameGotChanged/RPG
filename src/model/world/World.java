@@ -2,7 +2,6 @@ package model.world;
 
 import java.awt.Graphics;
 
-import controller.Game;
 import controller.Handler;
 import controller.utils.Utils;
 import model.enitity.EntityManager;
@@ -87,4 +86,10 @@ public class World {
 	public int getHeight() {
 		return height;
 	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+	
+	
 }

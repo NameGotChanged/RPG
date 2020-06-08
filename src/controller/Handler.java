@@ -1,7 +1,8 @@
 package controller;
 
 import controller.camera.GameCamera;
-import controller.keyManager.KeyManager;
+import input.KeyManager;
+import input.MouseManager;
 import model.world.World;
 
 public class Handler {
@@ -18,6 +19,10 @@ public class Handler {
 	
 	public KeyManager getKeyManager() {
 		return game.getKeyManager();
+	}
+	
+	public MouseManager getMouseManager() {
+		return game.getMouseManager();
 	}
 	
 	public int getWidth() {

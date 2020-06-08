@@ -14,7 +14,6 @@ public class Character_Player extends Character {
 	 */
 	public Character_Player(int x, int y, int hp, int def, int dmg, int speed) {
 		super(x, y, hp, def, dmg, speed);
-		this.player = Character_Player_Assets.characterMovingToTheRight;
 	}
 	
 	/**
@@ -49,14 +48,12 @@ public class Character_Player extends Character {
 	@Override
 	public void moveLeft() {
 		this.setX(this.getX() - speed);
-		this.player = Character_Player_Assets.characterMovingToTheLeft;
 	}
 
 	@Override
 	public void moveRight() {
 		// TODO Auto-generated method stub
 		this.setX(this.getX() + speed);
-		this.player = Character_Player_Assets.characterMovingToTheRight;
 	}
 
 	@Override
@@ -74,7 +71,7 @@ public class Character_Player extends Character {
 
 	@Override
 	public void display(Graphics g) {
-		g.drawImage(player, getX(), getY(), null);
+		//g.drawImage(player, getX(), getY(), null);
 	}
 	
 	

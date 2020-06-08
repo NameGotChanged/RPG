@@ -12,6 +12,12 @@ public class Tile {
 	public static Tile grassTile = new GrassTile(0);
 	public static Tile dirtTile = new DirtTile(1);
 	public static Tile rockTile = new RockTile(2);
+	public static Tile wallTileX = new WallTileX(3);
+	public static Tile wallTileY = new WallTileY(4);
+	public static Tile wallCornerTopLeft = new WallCornerTopLeft(5);
+	public static Tile wallCornerTopRight = new WallCornerTopRight(6);
+	public static Tile wallCornerBottomRight = new WallCornerBottomRight(7);
+	public static Tile wallCornerBottomLeft = new WallCornerBottomLeft(8);
 	
 	
 	public static final int TILEWIDTH = 64, TILEHEIGHT = 64;

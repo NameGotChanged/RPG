@@ -2,7 +2,6 @@ package controller.state;
 
 import java.awt.Graphics;
 
-import controller.Game;
 import controller.Handler;
 
 public abstract class State {
@@ -17,4 +16,6 @@ public abstract class State {
 	
 	public abstract void tick();
 	public abstract void render(Graphics g);
+	
+	
 }
