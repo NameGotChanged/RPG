@@ -3,11 +3,13 @@ package model.world;
 import java.awt.Graphics;
 
 import controller.Handler;
-import controller.utils.Utils;
 import model.enitity.EntityManager;
 import model.enitity.creature.player.Player;
-import model.enitity.statics.Tree;
+import model.enitity.creature.slime.Slime;
+import model.enitity.staticEntity.Door;
+import model.enitity.staticEntity.Tree;
 import model.tile.Tile;
+import utils.Utils;
 
 public class World {
 	
@@ -21,8 +23,21 @@ public class World {
 	public World(Handler handler, String path) {
 		this.handler = handler; //load first so it doesn't crash
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
-		entityManager.addEntity(new Tree(handler, 100, 250));
-		entityManager.addEntity(new Tree(handler, 200, 270));
+		entityManager.addEntity(new Tree(handler, 250, 300));
+		entityManager.addEntity(new Tree(handler, 600, 600));
+		entityManager.addEntity(new Tree(handler, 800, 800));
+		entityManager.addEntity(new Tree(handler, 1100, 400));
+		entityManager.addEntity(new Tree(handler, 580, 300));
+		entityManager.addEntity(new Tree(handler, 600, 600));
+		entityManager.addEntity(new Door(handler, 448,448, width, 2*height));
+		entityManager.addEntity(new Slime(handler, 400, 600, width, height));
+		entityManager.addEntity(new Slime(handler, 450, 600, width, height));
+		entityManager.addEntity(new Slime(handler, 400, 770, width, height));
+		entityManager.addEntity(new Slime(handler, 500, 250, width, height));
+		entityManager.addEntity(new Slime(handler, 800, 450, width, height));
+		entityManager.addEntity(new Slime(handler, 480, 300, width, height));
+		entityManager.addEntity(new Slime(handler, 600, 700, width, height));
+		entityManager.addEntity(new Slime(handler, 80, 80, width, height));
 		
 		loadWorld(path);
 		

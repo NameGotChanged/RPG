@@ -18,7 +18,18 @@ public class Tile {
 	public static Tile wallCornerTopRight = new WallCornerTopRight(6);
 	public static Tile wallCornerBottomRight = new WallCornerBottomRight(7);
 	public static Tile wallCornerBottomLeft = new WallCornerBottomLeft(8);
-	
+	public static Tile houseRoofTopLeft = new HouseRoofTopLeft(9);
+	public static Tile houseRoofTopMiddle = new HouseRoofTopMiddle(10);
+	public static Tile houseRoofTopRight = new HouseRoofTopRight(11);
+	public static Tile houseRoofBottomLeft = new HouseRoofBottomLeft(12);
+	public static Tile houseRoofBottomMiddle = new HouseRoofBottomMiddle(13);
+	public static Tile houseRoofBottomRight = new HouseRoofBottomRight(14);
+	public static Tile houseTopLeft = new HouseTopLeft(15);
+	public static Tile houseTopMiddle = new HouseTopMiddle(16);
+	public static Tile houseTopRight = new HouseTopRight(17);
+	public static Tile houseBottomLeft = new HouseBottomLeft(18);
+	public static Tile houseBottomMiddle = new HouseBottomMiddle(19);
+	public static Tile houseBottomRight = new HouseBottomRight(20);
 	
 	public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
 	

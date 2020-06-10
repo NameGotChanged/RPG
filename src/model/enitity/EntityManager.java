@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 import controller.Handler;
 import model.enitity.creature.player.Player;
+import model.enitity.creature.slime.Slime;
 
 public class EntityManager {
 	

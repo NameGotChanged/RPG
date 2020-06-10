@@ -14,10 +14,12 @@ public class Assets {
 	private static final int width = 32;
 	private static final int height = 32;
 	//Animation
-	//Movement Animations
+	//Player Movement Animations
 	public static BufferedImage[] player_move_right, player_move_left, player_move_up, player_move_down;
-	//Attack Animations
+	//Player Attack Animations
 	public static BufferedImage[] player_move_right_attack, player_move_left_attack, player_move_down_attack;
+	//Slime Movement Animation
+	public static BufferedImage[] slime_move_right, slime_move_left, slime_move_up, slime_move_down;
 	
 	//UI and UI_Button_Hover images
 	public static BufferedImage[] user_Interface_Button;
@@ -27,7 +29,10 @@ public class Assets {
 	//Textures
 	public static BufferedImage grass1, grass2, grass3, stone, dirt;
 	public static BufferedImage treeGreen, treeDarkGreen, treeOrange;
-	public static BufferedImage[] house;
+	//House
+	public static BufferedImage houseRoofTopLeft, houseRoofTopMiddle, houseRoofTopRight, 
+	houseRoofBottomLeft, houseRoofBottomMiddle, houseRoofBottomRight, houseTopLeft, 
+	houseTopMiddle, houseTopRight, houseBottomLeft, houseBottomMiddle, houseBottomRight, door;
 	
 	//WallTile in X und Y richtung & corner
 	public static BufferedImage wallTileX, wallTileY, wallCornerBottomRight, wallCornerBottomLeft, wallCornerTopRight, wallCornerTopLeft;
@@ -49,16 +54,16 @@ public class Assets {
 		player_move_right_attack[9] = sheet.crop(9*width, 3*height, width, height);
 		
 		player_move_left_attack = new BufferedImage[10];
-		player_move_left_attack[9] = sheet.crop(0, 11*height, width, height);
-		player_move_left_attack[8] = sheet.crop(width, 11*height, width, height);
-		player_move_left_attack[7] = sheet.crop(2*width, 11*height, width, height);
-		player_move_left_attack[6] = sheet.crop(3*width, 11*height, width, height);
-		player_move_left_attack[5] = sheet.crop(4*width, 11*height, width, height);
-		player_move_left_attack[4] = sheet.crop(5*width, 11*height, width, height);
-		player_move_left_attack[3] = sheet.crop(6*width, 11*height, width, height);
-		player_move_left_attack[2] = sheet.crop(7*width, 11*height, width, height);
-		player_move_left_attack[1] = sheet.crop(8*width, 11*height, width, height);
-		player_move_left_attack[0] = sheet.crop(9*width, 11*height, width, height);
+		player_move_left_attack[0] = sheet.crop(0, 11*height, width, height);
+		player_move_left_attack[1] = sheet.crop(width, 11*height, width, height);
+		player_move_left_attack[2] = sheet.crop(2*width, 11*height, width, height);
+		player_move_left_attack[3] = sheet.crop(3*width, 11*height, width, height);
+		player_move_left_attack[4] = sheet.crop(4*width, 11*height, width, height);
+		player_move_left_attack[5] = sheet.crop(5*width, 11*height, width, height);
+		player_move_left_attack[6] = sheet.crop(6*width, 11*height, width, height);
+		player_move_left_attack[7] = sheet.crop(7*width, 11*height, width, height);
+		player_move_left_attack[8] = sheet.crop(8*width, 11*height, width, height);
+		player_move_left_attack[9] = sheet.crop(9*width, 11*height, width, height);
 		
 		player_move_down_attack = new BufferedImage[10];
 		player_move_down_attack[0] = sheet.crop(0, 12*height, width, height);
@@ -105,6 +110,25 @@ public class Assets {
 		player_move_up[2] = sheet.crop(10*width, height, width, height);		
 	}
 	
+	public static void initSlimeSprites() {
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/slime_small_blue.png"));
+		slime_move_down = new BufferedImage[2];
+		slime_move_down[0] = sheet.crop(0, 0, width, height);
+		slime_move_down[1] = sheet.crop(width, 0, width, height);
+		
+		slime_move_right = new BufferedImage[2];
+		slime_move_right[0] = sheet.crop(0, height, width, height);
+		slime_move_right[1] = sheet.crop(width, height, width, height);
+		
+		slime_move_up = new BufferedImage[2];
+		slime_move_up[0] = sheet.crop(0, 2*height, width, height);
+		slime_move_up[1] = sheet.crop(width, 2*height, width, height);
+		
+		slime_move_left = new BufferedImage[2];
+		slime_move_left[0] = sheet.crop(0, 3*height, width, height);
+		slime_move_left[1] = sheet.crop(width, 3*height, width, height);
+	}
+	
 	public static void initTextures() {
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/textures.png"));
 		grass1 = sheet.crop(0, 0, width, height);
@@ -122,8 +146,19 @@ public class Assets {
 		wallCornerTopRight = sheet.crop(3*width, 26*height, width, height);
 		wallCornerTopLeft = sheet.crop(2*width, 26*height, width, height);
 		
-		house = new BufferedImage[10];
-		//house[0] = sheet.crop(x, y, width, 42*height);
+		houseRoofTopLeft = sheet.crop(0, 44*height, width, height);
+		houseRoofTopMiddle = sheet.crop(width, 44*height, width, height);
+		houseRoofTopRight = sheet.crop(2*width, 44*height, width, height);
+		houseRoofBottomLeft = sheet.crop(0, 45*height, width, height);
+		houseRoofBottomMiddle = sheet.crop(width, 45*height, width, height);
+		houseRoofBottomRight = sheet.crop(2*width, 45*height, width, height);
+		houseTopLeft = sheet.crop(0, 46*height, width, height);
+		houseTopMiddle = sheet.crop(width, 46*height, width, height);
+		houseTopRight = sheet.crop(2*width, 46*height, width, height);
+		houseBottomLeft = sheet.crop(0, 47*height, width, height);
+		houseBottomMiddle = sheet.crop(width, 47*height, width, height);
+		houseBottomRight = sheet.crop(2*width, 47*height, width, height);
+		door = sheet.crop(7*width, 46*height, width, 2*height);
 		
 	}
 	

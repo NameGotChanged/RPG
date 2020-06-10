@@ -29,7 +29,7 @@ public class Display {
 		frame.setSize(width, height);
 		//Important because you don't want the window be closed but the game still running in the background!
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//Can't change windows size
+		//Can't change windows size because it fucks up the graphics
 		frame.setResizable(false);
 		//Null sets the Window location in the middle of the screen
 		frame.setLocationRelativeTo(null);

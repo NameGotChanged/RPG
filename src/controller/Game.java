@@ -4,24 +4,26 @@ import java.awt.Graphics;
 
 import java.awt.image.BufferStrategy;
 
-import controller.camera.GameCamera;
-import controller.music.MusicLoader;
-import input.KeyManager;
-import input.MouseManager;
-import controller.state.GameState;
-import controller.state.GameStateManager;
-import controller.state.MenuState;
-import controller.state.State;
-import model.character.Character_Player;
+import model.camera.GameCamera;
+import model.input.KeyManager;
+import model.input.MouseManager;
+import model.music.MusicLoader;
+import model.state.GameState;
+import model.state.GameStateManager;
+import model.state.MenuState;
+import model.state.State;
 import view.Assets;
 
 import view.Display;
 
-
+/**
+ * Handles the logic of when and how to tick and render things
+ * @author NameG
+ *
+ */
 public class Game implements Runnable {
-	
+
 	private Display display;
-	public Character_Player nino;
 	private int width, height;
 	public String title;
 	
@@ -66,7 +68,7 @@ public class Game implements Runnable {
 		mouseManager = new MouseManager();
 	}
 	/**
-	 * Setup Game
+	 * Setup Game (preload data for use later)
 	 */
 	private void init() {
 		display = new Display(title, width, height);
@@ -85,6 +87,7 @@ public class Game implements Runnable {
 		Assets.initUserInterfaceBackground();
 		Assets.initUserInterfaceTextures();
 		Assets.initPlayerSprites();
+		Assets.initSlimeSprites();
 		Assets.initTextures();
 		
 		
@@ -96,7 +99,7 @@ public class Game implements Runnable {
 		
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
-		GameStateManager.setState(menuState);
+		GameStateManager.setState(menuState);	//if menuState is set the game loads the game menu first
 	}
 	/**
 	 * Updates modell
@@ -106,10 +109,11 @@ public class Game implements Runnable {
 		if(GameStateManager.getState() != null) //Avoiding nullPointerEx
 			GameStateManager.getState().tick(); //updating modell (ticking)
 	}
+	
 	/**
-	 * renders/draws the updated data to Display/buffer1
+	 * renders/draws the updated data to Display/buffer
 	 */
-	public void render() {
+	private void render() {
 		bs = display.getCanvas().getBufferStrategy();
 		if(bs == null) {
 			display.getCanvas().createBufferStrategy(3);
@@ -140,7 +144,7 @@ public class Game implements Runnable {
 		
 		int fps = 60;//ticks per second
 		//1second in nano seconds / fps = 60 frames per second
-		double timePerTick = 1000000000 / fps;
+		double timePerTick = 1000000000 / fps; //1/60 of a second in nano seconds
 		double delta = 0;
 		long now;
 		long lastTime = System.nanoTime();
@@ -150,12 +154,14 @@ public class Game implements Runnable {
 		// As long as running is true loop
 		 
 		while(running) {
-			//Basically holds the Value of time before the code below
+			//Updates the now time each time the loop runs
 			now = System.nanoTime();
-			//Delta is 1 or higher when the game needs to be updated and rendered
+			//if now - lastTime is bigger or as big as 1/60 of a second in nano seconds
+			//delta is 1 or greater 1 which means that the game can be updated and rendered
+			//because the game has 60 frames per second
 			delta += (now - lastTime) / timePerTick;
 			timer += now - lastTime;
-			//Basically holds the Value of time after the code above
+			//Holds the time from this run through the loop for the next run so delta can be calculated
 			lastTime = now;
 			//Checking if delta is bigger or equal to 1
 			if(delta >= 1) {
@@ -167,8 +173,8 @@ public class Game implements Runnable {
 			//If the timer is equal to 1 sec in nano seconds
 			//Print out how many times the game and the image have been updated in that second
 			//FPS
-			if(timer >= 1000000000) {
-				System.out.println("Ticks and Frames: " + ticks);
+			if(timer >= 1000000000) { //Code needed to display fps
+				//System.out.println("Ticks and Frames: " + ticks); shows fps
 				ticks = 0;
 				timer = 0;
 			}
@@ -176,6 +182,8 @@ public class Game implements Runnable {
 		//stops the thread if it isn't already stopped
 		stop();
 	}
+	
+	//Getters and setters
 	
 	public GameCamera getGameCamera() {
 		return gameCamera;
@@ -200,7 +208,7 @@ public class Game implements Runnable {
 	/**
 	 * Starts Thread
 	 */
-	public synchronized void start() {
+	public synchronized void start() { //synchronized macht das ein Thread nur diesen Code ausführt und kein weiterer Thread diesen Bereich nutzen kann
 		//In the case that the start method gets called while it is already running
 		//It should return (go out of the start method)
 		if(running)

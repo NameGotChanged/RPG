@@ -1,9 +1,15 @@
 package controller;
 
-import controller.camera.GameCamera;
-import input.KeyManager;
-import input.MouseManager;
+import model.camera.GameCamera;
+import model.input.KeyManager;
+import model.input.MouseManager;
 import model.world.World;
+
+/**
+ * Provides the most important getters and setters, so that you can access everything through the handler
+ * @author NameG
+ *
+ */
 
 public class Handler {
 	
@@ -12,6 +18,8 @@ public class Handler {
 	public Handler(Game game) {
 		this.game = game;
 	}
+	
+	//Getters and Setters
 	
 	public GameCamera getGameCamera() {
 		return game.getGameCamera();

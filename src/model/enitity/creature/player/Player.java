@@ -19,7 +19,7 @@ public class Player extends Creature {
 	//Attack Animations
 	private Animation animDownAttack, animLeftAttack, animRightAttack;
 	//Attack timer in ms
-	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
+	private long lastAttackTimer, attackCooldown = 400, attackTimer = attackCooldown;
 	
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
@@ -97,7 +97,7 @@ public class Player extends Creature {
 			if(e.equals(this))
 				continue; //if the entity is this Player object continue to the next Entity
 			if(e.getCollisionBounds(0, 0).intersects(ar)) {
-				e.hurt(1);
+				e.hurt(2);
 				return;
 			}
 		}
