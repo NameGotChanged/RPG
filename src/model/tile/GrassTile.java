@@ -1,12 +1,17 @@
 package model.tile;
 
-
 import view.Assets;
 
-public class GrassTile extends Tile{
+/**
+ * a grass tile
+ * 
+ * @author NameG
+ *
+ */
+public class GrassTile extends Tile {
 
 	public GrassTile(int id) {
-		super(Assets.grass1, id);
+		super(Assets.grassGreen, id);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 
 /**
  * Loads images and interprets them
+ * 
  * @author NameG
  *
  */
@@ -17,9 +18,9 @@ public class ImageLoader {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//System Code one means the Image didn't load.
+			// System Code one means the Image didn't load.
 			System.exit(1);
 		}
 		return null;
-	} 
+	}
 }

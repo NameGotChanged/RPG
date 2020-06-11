@@ -3,8 +3,15 @@ package model.ui;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-public class UIImageButton extends UIObject{
-	
+/**
+ * Makes a UI button that can be clicked and that changes its image when someone
+ * hovers over it
+ * 
+ * @author NameG
+ *
+ */
+public class UIImageButton extends UIObject {
+
 	private BufferedImage[] images;
 	private ClickListener clicker;
 
@@ -16,20 +23,20 @@ public class UIImageButton extends UIObject{
 
 	@Override
 	public void tick() {
-		
-		
+
 	}
-	
+
 	/**
-	 * When hovering over the button change the button image to the second button image in the array else the first
+	 * When hovering over the button change the button image to the second button
+	 * image in the array else the first
 	 */
 	@Override
 	public void render(Graphics g) {
-		if(hovering)
+		if (hovering)
 			g.drawImage(images[1], (int) x, (int) y, width, height, null);
 		else
 			g.drawImage(images[0], (int) x, (int) y, width, height, null);
-		
+
 	}
 
 	/**
@@ -37,7 +44,7 @@ public class UIImageButton extends UIObject{
 	 */
 	@Override
 	public void onClick() {
-		clicker.onClick();		
+		clicker.onClick();
 	}
-	
+
 }

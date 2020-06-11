@@ -2,7 +2,13 @@ package model.tile;
 
 import view.Assets;
 
-public class HouseRoofTopMiddle extends Tile{
+/**
+ * the top middle house tile which is a roof tile
+ * 
+ * @author NameG
+ *
+ */
+public class HouseRoofTopMiddle extends Tile {
 
 	public HouseRoofTopMiddle(int id) {
 		super(Assets.houseRoofTopMiddle, id);

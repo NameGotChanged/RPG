@@ -2,7 +2,14 @@ package model.tile;
 
 import view.Assets;
 
-public class WallCornerBottomRight extends Tile{
+/**
+ * Bottom right wall corner
+ * 
+ * @author NameG
+ *
+ */
+
+public class WallCornerBottomRight extends Tile {
 
 	public WallCornerBottomRight(int id) {
 		super(Assets.wallCornerBottomRight, id);

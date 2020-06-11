@@ -1,13 +1,19 @@
 package model.tile;
 
-
 import view.Assets;
 
-public class WallTileX extends Tile{
+/**
+ * The left and right Walls that are currently used to restrict the world
+ * 
+ * @author NameG
+ *
+ */
+
+public class WallTileX extends Tile {
 
 	public WallTileX(int id) {
 		super(Assets.wallTileX, id);
-		
+
 	}
 
 	@Override

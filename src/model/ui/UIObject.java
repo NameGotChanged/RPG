@@ -4,13 +4,19 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 
+/**
+ * abstract class for User Interface Objects
+ * 
+ * @author NameG
+ *
+ */
 public abstract class UIObject {
-	
+
 	protected float x, y;
 	protected int width, height;
 	protected Rectangle bounds;
 	protected boolean hovering;
-	
+
 	public UIObject(float x, float y, int width, int height) {
 		this.x = x;
 		this.y = y;
@@ -18,30 +24,31 @@ public abstract class UIObject {
 		this.height = height;
 		bounds = new Rectangle((int) x, (int) y, width, height);
 	}
-	
+
 	public abstract void tick();
-	
+
 	public abstract void render(Graphics g);
-	
+
 	public abstract void onClick();
-	
+
 	public void onMouseMove(MouseEvent e) {
-		if(bounds.contains(e.getX(), e.getY()))
+		if (bounds.contains(e.getX(), e.getY()))
 			hovering = true;
 		else
 			hovering = false;
 	}
-	
+
 	/**
 	 * If the Mouse button is released do your thing
+	 * 
 	 * @param e
 	 */
 	public void onMouseRelease(MouseEvent e) {
-		if(hovering)
+		if (hovering)
 			onClick();
 	}
-	
-	//Getters and setters
+
+	// Getters and setters
 
 	public float getX() {
 		return x;
@@ -82,6 +89,5 @@ public abstract class UIObject {
 	public void setHovering(boolean hovering) {
 		this.hovering = hovering;
 	}
-	
-	
+
 }

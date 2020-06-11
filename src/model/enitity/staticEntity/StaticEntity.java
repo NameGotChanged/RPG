@@ -5,6 +5,7 @@ import model.enitity.Entity;
 
 /**
  * Entities that don't move
+ * 
  * @author NameG
  *
  */
