@@ -3,6 +3,7 @@ package model.enitity;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 import controller.Handler;
 import model.enitity.creature.player.Player;
@@ -48,11 +49,12 @@ public class EntityManager {
 	 * Update entity model
 	 */
 	public void tick() {
-		for (int i = 0; i < entities.size(); i++) { // can't use Entity e : entities since it leads to errors
-			Entity e = entities.get(i);
+		Iterator<Entity> it = entities.iterator();
+		while(it.hasNext())  { // can't use Entity e : entities since it leads to errors
+			Entity e = it.next();
 			e.tick();
 			if (!e.isActive()) // If the eneties health is 0 or lower it should get removed
-				entities.remove(e);
+				it.remove();
 		}
 		entities.sort(renderSorter);
 	}
