@@ -4,7 +4,7 @@ import controller.Handler;
 import model.enitity.Entity;
 
 /**
- * Entities that don't move
+ * Entities that don't move (are static)
  * 
  * @author NameG
  *

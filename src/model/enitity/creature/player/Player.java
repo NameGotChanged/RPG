@@ -153,7 +153,7 @@ public class Player extends Creature {
 
 	/**
 	 * Gets the current frame to show based on the movement the player makes and if
-	 * he is pressing space
+	 * he is pressing space (Attacking)
 	 * 
 	 * @return
 	 */

@@ -7,7 +7,7 @@ import model.tile.Tile;
 import view.Assets;
 
 /**
- * A door that for some reason is an entity in this case
+ * Model for the staticEntity Door
  * 
  * @author NameG
  *

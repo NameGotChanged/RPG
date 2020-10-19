@@ -21,7 +21,7 @@ public class Utils {
 													// line variable
 				builder.append(line + "\n"); // Makes a new Lane after a line that got read
 
-			br.close(); // closes the buffered reader (gives the ressources back to the system)
+			br.close(); // closes the buffered reader (gives the resources back to the system)
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -168,7 +168,6 @@ public class Assets {
 		userInterfaceButton = new BufferedImage[2];
 		userInterfaceButton[0] = sheet.crop(0, 5, 145, 80);
 		userInterfaceButton[1] = sheet.crop(0, 90, 145, 80);
-
 	}
 
 	public static void initUserInterfaceBackground() {

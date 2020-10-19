@@ -7,7 +7,7 @@ import view.Assets;
 import model.tile.Tile;
 
 /**
- * A tree that can't move
+ * Model of a tree
  * 
  * @author NameG
  *
