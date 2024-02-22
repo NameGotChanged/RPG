@@ -143,12 +143,11 @@ public class Player extends Creature {
 																						// because the method only takes
 																						// int
 
-		// Temporary Code to draw the hitBox of the player
-		/*
-		 * g.setColor(Color.RED); g.fillRect((int) (x + bounds.x -
-		 * handler.getGameCamera().getxOffset()),(int) (y + bounds.y -
-		 * handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
-		 */
+		
+		 g.setColor(java.awt.Color.RED); g.fillRect((int) (x + bounds.x -
+		 handler.getGameCamera().getxOffset()),(int) (y + bounds.y -
+		 handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
+		 
 	}
 
 	/**

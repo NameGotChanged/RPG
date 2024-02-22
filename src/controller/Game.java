@@ -178,6 +178,7 @@ public class Game implements Runnable {
 				ticks = 0;
 				timer = 0;
 			}
+			
 		}
 		// stops the thread if it isn't already stopped
 		stop();

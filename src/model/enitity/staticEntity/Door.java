@@ -16,7 +16,7 @@ public class Door extends StaticEntity {
 
 	public Door(Handler handler, float x, float y, int width, int height) {
 		super(handler, x, y, Tile.TILEWIDTH, 2 * Tile.TILEHEIGHT);
-		this.health = 10000;
+		this.health = 10;
 		bounds.x = 0;
 		bounds.y = 0;
 		bounds.width = 64;

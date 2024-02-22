@@ -1,6 +1,9 @@
 package model.world;
 
 import java.awt.Graphics;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import controller.Handler;
 import model.enitity.EntityManager;
@@ -44,6 +47,17 @@ public class World {
 		entityManager.addEntity(new Slime(handler, 480, 300));
 		entityManager.addEntity(new Slime(handler, 600, 700));
 		entityManager.addEntity(new Slime(handler, 80, 80));
+		
+		
+		
+		/*Runnable spawnSlime = new Runnable() {
+			public void run() {
+		entityManager.addEntity(new Slime(handler, 100, 200));
+			}
+		};
+		
+		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+		executor.scheduleAtFixedRate(spawnSlime, 0, 3, TimeUnit.SECONDS);*/
 
 		loadWorld(path);
 
@@ -98,7 +112,7 @@ public class World {
 		tiles = new int[width][height];
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]); // 4 has to be added because the first 4
+				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]); // 4 has to be added because the first 2
 																			// lines aren't world data
 			}
 		}
